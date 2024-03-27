@@ -83,7 +83,7 @@ val jar by tasks.getting(Jar::class) {
     })
 }
 
-group = "customfirebaseforkforjava"
+//group = "customfirebaseforkforjava"
 
 val sourceSets = project.the<SourceSetContainer>()
 
@@ -92,43 +92,19 @@ val cleanLibs by tasks.creating(Delete::class) {
 }
 
 publishing {
-
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/uwtBomman/firebase-java-sdk/")
+            url = uri("https://maven.pkg.github.com/uwtBomman/firebase-java-sdk")
             credentials {
-                username = "uwtBomman"
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
             }
         }
     }
-
     publications {
-        create<MavenPublication>("library") {
+        register<MavenPublication>("gpr") {
             from(components["java"])
-
-//            pom {
-//                name.set("firebase-java-sdk")
-//                description.set("The Firebase Java SDK fork.")
-//                url.set("https://maven.pkg.github.com/uwtBomman/firebase-java-sdk/")
-//                inceptionYear.set("2023")
-//
-//                scm {
-//                    url.set("https://github.com/uwtBomman/firebase-java-sdk")
-//                    connection.set("https://github.com/uwtBomman/firebase-java-sdk.git")
-//                    developerConnection.set("https://github.com/uwtBomman/firebase-java-sdk.git")
-//                    tag.set("HEAD")
-//                }
-//                licenses {
-//                    license {
-//                        name.set("The Apache Software License, Version 2.0")
-//                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-//                        distribution.set("repo")
-//                        comments.set("A business-friendly OSS license")
-//                    }
-//                }
-//            }
         }
     }
 }
