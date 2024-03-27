@@ -97,7 +97,7 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/uwtBomman/firebase-java-sdk")
             credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                username = "uwtBomman"
                 password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
             }
         }
