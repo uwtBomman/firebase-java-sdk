@@ -107,6 +107,17 @@ publishing {
             from(components["java"])
 
             pom {
+                name.set("firebase-java-sdk")
+                description.set("The Firebase Java SDK fork.")
+                url.set("https://maven.pkg.github.com/uwtBomman/firebase-java-sdk/")
+                inceptionYear.set("2023")
+
+//                scm {
+//                    url.set("https://github.com/GitLiveApp/firebase-java-sdk")
+//                    connection.set("scm:git:https://github.com/GitLiveApp/firebase-java-sdk.git")
+//                    developerConnection.set("scm:git:https://github.com/GitLiveApp/firebase-java-sdk.git")
+//                    tag.set("HEAD")
+//                }
                 licenses {
                     license {
                         name.set("The Apache Software License, Version 2.0")
