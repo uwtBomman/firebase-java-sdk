@@ -6,10 +6,17 @@
 # For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Publishing-using-gradle
 
 
+
 name: Publish
 on:
   release:
     types: [created]
+
+env:
+  sonatypeUsername: ${{ secrets.SONATYPEUSERNAME }}
+  sonatypePassword: ${{ secrets.SONATYPEPASSWORD }}
+  ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_PRIVATE_KEY }}
+  ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.PASSPHRASE }}
 
 jobs:
   build:
@@ -30,6 +37,3 @@ jobs:
     
       - name: Publish to GitHub Packages
         run: ./gradlew publish
-        env:
-          USERNAME: ${{ github.actor }}
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
