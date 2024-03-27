@@ -95,10 +95,10 @@ publishing {
 
     repositories {
         maven {
-            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2")
+            url = uri("https://maven.pkg.github.com/uwtBomman/firebase-java-sdk/")
             credentials {
-                username = project.findProperty("sonatypeUsername") as String? ?: System.getenv("sonatypeUsername")
-                password = project.findProperty("sonatypePassword") as String? ?: System.getenv("sonatypePassword")
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
             }
         }
     }
