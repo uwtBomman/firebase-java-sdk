@@ -22,7 +22,6 @@ plugins {
     id("com.github.ben-manes.versions") version "0.42.0"
 }
 
-group = "dev.gitlive"
 version = project.property("version") as String
 
 java {
@@ -112,12 +111,12 @@ publishing {
                 url.set("https://maven.pkg.github.com/uwtBomman/firebase-java-sdk/")
                 inceptionYear.set("2023")
 
-//                scm {
-//                    url.set("https://github.com/GitLiveApp/firebase-java-sdk")
-//                    connection.set("scm:git:https://github.com/GitLiveApp/firebase-java-sdk.git")
-//                    developerConnection.set("scm:git:https://github.com/GitLiveApp/firebase-java-sdk.git")
-//                    tag.set("HEAD")
-//                }
+                scm {
+                    url.set("https://github.com/uwtBomman/firebase-java-sdk")
+                    connection.set("https://github.com/uwtBomman/firebase-java-sdk.git")
+                    developerConnection.set("https://github.com/uwtBomman/firebase-java-sdk.git")
+                    tag.set("HEAD")
+                }
                 licenses {
                     license {
                         name.set("The Apache Software License, Version 2.0")
