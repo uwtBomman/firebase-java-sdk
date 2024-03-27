@@ -83,7 +83,7 @@ val jar by tasks.getting(Jar::class) {
     })
 }
 
-//group = "customfirebaseforkforjava"
+group = "customfirebaseforkforjava"
 
 val sourceSets = project.the<SourceSetContainer>()
 
@@ -97,8 +97,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/uwtBomman/firebase-java-sdk")
             credentials {
-                username = "uwtBomman"
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
             }
         }
     }
