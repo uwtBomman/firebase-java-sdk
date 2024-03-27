@@ -107,11 +107,6 @@ publishing {
             from(components["java"])
 
             pom {
-                name.set("firebase-java-sdk")
-                description.set("Fork of Firebase Java SDK is a pure java port of the Firebase Android SDK.")
-                url.set("https://github.com/GitLiveApp/firebase-java-sdk")
-                inceptionYear.set("2023")
-
                 licenses {
                     license {
                         name.set("The Apache Software License, Version 2.0")
