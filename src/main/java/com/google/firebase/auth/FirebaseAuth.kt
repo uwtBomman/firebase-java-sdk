@@ -428,7 +428,6 @@ class FirebaseAuth constructor(val app: FirebaseApp) : InternalAuthProvider {
     }
 
     fun sendPasswordResetEmail(email: String, settings: ActionCodeSettings?): Task<Unit> = TODO()
-    fun createUserWithEmailAndPassword(email: String, password: String): Task<AuthResult> = TODO()
     fun signInWithCredential(authCredential: AuthCredential): Task<AuthResult> = TODO()
     fun checkActionCode(code: String): Task<ActionCodeResult> = TODO()
     fun confirmPasswordReset(code: String, newPassword: String): Task<Unit> = TODO()
