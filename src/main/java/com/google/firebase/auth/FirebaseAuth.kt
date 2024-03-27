@@ -259,6 +259,39 @@ class FirebaseAuth constructor(val app: FirebaseApp) : InternalAuthProvider {
         return source.task
     }
 
+    fun createUserWithEmailAndPassword(email: String, password: String): Task<AuthResult> {
+        val source = TaskCompletionSource<AuthResult>()
+        val body = RequestBody.create(
+            json,
+            JsonObject(mapOf("email" to JsonPrimitive(email), "password" to JsonPrimitive(password), "returnSecureToken" to JsonPrimitive(true))).toString()
+        )
+        val request = Request.Builder()
+            .url("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + app.options.apiKey)
+            .post(body)
+            .build()
+        client.newCall(request).enqueue(object : Callback {
+
+            override fun onFailure(call: Call, e: IOException) {
+                source.setException(FirebaseException(e.toString(), e))
+            }
+
+            @Throws(IOException::class)
+            override fun onResponse(call: Call, response: Response) {
+                if (!response.isSuccessful) {
+                    source.setException(FirebaseAuthInvalidUserException(
+                        response.message(),
+                        formatErrorMessage("verifyPassword", request, response)
+                    ))
+                } else {
+                    val body = response.body()!!.use { it.string() }
+                    val user = FirebaseUserImpl(app, jsonParser.parseToJsonElement(body).jsonObject)
+                    refreshToken(user, source) { AuthResult { it } }
+                }
+            }
+        })
+        return source.task
+    }
+
     internal fun formatErrorMessage(title: String, request: Request, response: Response): String {
         return "$title API returned an error, " +
             "with url [${request.method()}] ${request.url()} ${request.body()} -- " +
