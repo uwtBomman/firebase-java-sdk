@@ -24,6 +24,7 @@ import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.TimeUnit
 import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 
 val jsonParser = Json { ignoreUnknownKeys = true }
 
@@ -451,4 +452,8 @@ class FirebaseAuth constructor(val app: FirebaseApp) : InternalAuthProvider {
 
     fun setLanguageCode(value: String): Nothing = TODO()
     fun useEmulator(host: String, port: Int): Unit = TODO()
+}
+
+fun  writeToFirebaseStorage(dst: String, file: File){
+    return FirebaseStorage.getInstance().reference.child(dst).putFile(Uri(file.toURI()))
 }
