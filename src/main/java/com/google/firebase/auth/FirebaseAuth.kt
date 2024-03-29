@@ -1,5 +1,6 @@
 package com.google.firebase.auth
 
+import android.net.Uri
 import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.TaskCompletionSource
@@ -18,6 +19,7 @@ import kotlinx.serialization.Transient
 import kotlinx.serialization.json.*
 import okhttp3.*
 import java.io.IOException
+import java.net.URI
 import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.TimeUnit
@@ -448,4 +450,8 @@ class FirebaseAuth constructor(val app: FirebaseApp) : InternalAuthProvider {
 
     fun setLanguageCode(value: String): Nothing = TODO()
     fun useEmulator(host: String, port: Int): Unit = TODO()
+
+    fun URItoUri(uri:URI):Uri {
+        return Uri(uri)
+    }
 }
