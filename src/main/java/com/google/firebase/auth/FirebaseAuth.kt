@@ -23,6 +23,7 @@ import java.net.URI
 import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.TimeUnit
+import com.google.firebase.storage.FirebaseStorage
 
 val jsonParser = Json { ignoreUnknownKeys = true }
 
@@ -450,8 +451,4 @@ class FirebaseAuth constructor(val app: FirebaseApp) : InternalAuthProvider {
 
     fun setLanguageCode(value: String): Nothing = TODO()
     fun useEmulator(host: String, port: Int): Unit = TODO()
-
-    fun URItoUri(uri:URI):Uri {
-        return Uri(uri)
-    }
 }
