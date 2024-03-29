@@ -120,7 +120,7 @@ dependencies {
     aar("com.google.firebase:firebase-database:20.3.0")
     aar("com.google.firebase:firebase-config:21.6.0")
     aar("com.google.firebase:firebase-installations:17.2.0")
-    aar("com.google.firebase:firebase-storage-ktx:20.3.0")
+    aar("com.google.firebase:firebase-storage:20.3.0")
     // extracted aar dependencies
     api(fileTree(mapOf("dir" to "build/jar", "include" to listOf("*.jar"))))
     // polyfill dependencies
