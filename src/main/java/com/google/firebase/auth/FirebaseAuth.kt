@@ -19,13 +19,9 @@ import kotlinx.serialization.Transient
 import kotlinx.serialization.json.*
 import okhttp3.*
 import java.io.IOException
-import java.net.URI
 import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.TimeUnit
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.UploadTask
-import java.io.File
 
 val jsonParser = Json { ignoreUnknownKeys = true }
 
@@ -453,8 +449,4 @@ class FirebaseAuth constructor(val app: FirebaseApp) : InternalAuthProvider {
 
     fun setLanguageCode(value: String): Nothing = TODO()
     fun useEmulator(host: String, port: Int): Unit = TODO()
-}
-
-fun writeToFirebaseStorage(dst: String, file: File): com.google.firebase.storage.UploadTask {
-    return FirebaseStorage.getInstance().reference.child(dst).putFile(Uri(file.toURI()))
 }
