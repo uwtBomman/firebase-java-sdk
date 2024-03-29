@@ -245,9 +245,12 @@ class FirebaseAuth constructor(val app: FirebaseApp) : InternalAuthProvider {
             @Throws(IOException::class)
             override fun onResponse(call: Call, response: Response) {
                 if (!response.isSuccessful) {
+                    val errorMessage = jsonParser.parseToJsonElement(response.body()!!.string())
+                        .jsonObject.get("error")!!.jsonObject
+                    val message = errorMessage.get("message")!!.jsonPrimitive.content
                     source.setException(FirebaseAuthInvalidUserException(
-                        response.message(),
-                        formatErrorMessage("verifyPassword", request, response)
+                        "400",
+                        message
                     ))
                 } else {
                     val body = response.body()!!.use { it.string() }
@@ -278,12 +281,12 @@ class FirebaseAuth constructor(val app: FirebaseApp) : InternalAuthProvider {
             @Throws(IOException::class)
             override fun onResponse(call: Call, response: Response) {
                 if (!response.isSuccessful) {
-                    val body = jsonParser.parseToJsonElement(response.body()!!.string()).jsonObject.get("error")!!.jsonObject.get("message")
-                    print(body)
-
+                    val errorMessage = jsonParser.parseToJsonElement(response.body()!!.string())
+                        .jsonObject.get("error")!!.jsonObject
+                    val message = errorMessage.get("message")!!.jsonPrimitive.content
                     source.setException(FirebaseAuthInvalidUserException(
-                        response.message(),
-                        formatErrorMessage("verifyPassword", request, response)
+                        "400",
+                        message
                     ))
                 } else {
                     val body = response.body()!!.use { it.string() }
