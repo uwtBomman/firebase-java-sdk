@@ -278,8 +278,9 @@ class FirebaseAuth constructor(val app: FirebaseApp) : InternalAuthProvider {
             @Throws(IOException::class)
             override fun onResponse(call: Call, response: Response) {
                 if (!response.isSuccessful) {
+                    println(response.body()?.string())
                     println(response.message())
-                    println(response.body())
+
                     source.setException(FirebaseAuthInvalidUserException(
                         response.message(),
                         formatErrorMessage("verifyPassword", request, response)
