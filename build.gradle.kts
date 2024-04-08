@@ -95,7 +95,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/uwtBomman/firebase-java-alteredsdk")
+            url = uri("https://maven.pkg.github.com/uwtBomman/firebase-java-sdk")
             credentials {
                 username = "uwtBomman"
                 password = System.getenv("GH_TOKEN")
@@ -105,6 +105,7 @@ publishing {
     publications {
         register<MavenPublication>("gpr") {
             from(components["java"])
+            artifactId = "firebase-java-alteredsdk"
         }
     }
 }
